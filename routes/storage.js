@@ -7,9 +7,9 @@ const authMiddleWare = require('../middleware/session')
 const checkRol = require('../middleware/rol')
 
 /**Lista los Items */
-router.get("/", getItems)
+router.get("/", authMiddleWare, checkRol(['admin']), getItems)
     /**Lista detalle */
-router.get("/:id", validatorGetItem, getItem)
+router.get("/:id", validatorGetItem, authMiddleWare, checkRol(['admin']), getItem)
     /**Crear */
 router.post("/", uploadMiddleware.single("myfile"), authMiddleWare, checkRol(['admin']),createItem)
     /**Borrar */

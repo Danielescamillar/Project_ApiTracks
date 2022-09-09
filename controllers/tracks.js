@@ -66,13 +66,15 @@ const updateItem = async(req, res) => {
         try {
 
             const { id, ...body } = matchedData(req);
+            console.log("id----------",id);
             const data = await tracksModel.findOneAndUpdate(
                 id,
                 body
             );
+            console.log(data);
             res.send({ data });
         } catch (e) {
-
+            console.log(e)
             handleHttpError(res, "ERROR_UPDATE_ITEM");
 
         }

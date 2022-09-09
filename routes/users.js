@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
-const { validatorCreateItem, validatorGetItem } = require("../validators/tracks")
-const { getItems, getItem, updateItem, deleteItem } = require("../controllers/tracks")
+const { validatorUpdateItem, validatorGetItem } = require("../validators/users")
+const { getItems, getItem, updateItem, deleteItem } = require("../controllers/users")
 const authMiddleWare = require('../middleware/session')
 const checkRol = require('../middleware/rol')
 
@@ -10,7 +10,7 @@ router.get("/", authMiddleWare, checkRol(['admin']), getItems)
     /**Obtener detalle de item */
 router.get("/:id", validatorGetItem, authMiddleWare, checkRol(['admin']), getItem)
     /**Actualizar registro */
-router.put("/:id", validatorCreateItem, validatorGetItem, authMiddleWare, checkRol(['admin']), updateItem)
+router.put("/:id", validatorUpdateItem, validatorGetItem, authMiddleWare, checkRol(['admin']), updateItem)
     /**Actualizar registro */
 router.delete("/:id", validatorGetItem, authMiddleWare, checkRol(['admin']), deleteItem)
 

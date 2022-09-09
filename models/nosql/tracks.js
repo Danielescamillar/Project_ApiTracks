@@ -8,7 +8,7 @@ const TracksScheme = new mongoose.Schema({
     album: {
         type: String
     },
-    cover: {
+    url: {
         type: String,
         validate: (req) => {
             return true
@@ -24,14 +24,6 @@ const TracksScheme = new mongoose.Schema({
             type: String
         },
         nationality: {
-            type: String
-        }
-    },
-    duration: {
-        start: {
-            type: String
-        },
-        end: {
             type: String
         }
     },

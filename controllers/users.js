@@ -52,11 +52,10 @@ const updateItem = async(req, res) => {
                 id,
                 body
             );
-            res.send({ data });
+            const dataUpdated = await usersModel.findById(data.id)
+            res.send({ dataUpdated });
         } catch (e) {
-
             handleHttpError(res, "ERROR_UPDATE_ITEM");
-
         }
     }
     /**
