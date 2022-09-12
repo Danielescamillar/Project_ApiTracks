@@ -1,3 +1,4 @@
+const e = require('express')
 const { matchedData } = require('express-validator')
 const { tracksModel } = require('../models')
 const { handleHttpError } = require('../utils/handleError')
@@ -66,11 +67,10 @@ const updateItem = async(req, res) => {
         try {
 
             const { id, ...body } = matchedData(req);
-            const data = await tracksModel.findOneAndUpdate(
-                id,
-                body
-            );
-            console.log(data);
+            const data = await tracksModel.findOneAndUpdate( {_id : id} ,body, { new : true});
+            if (data === null) {
+                console.error(`the id: ${id} does not exist`) 
+                throw e}
             res.send({ data });
         } catch (e) {
             handleHttpError(res, "ERROR_UPDATE_ITEM");
