@@ -14,7 +14,7 @@ fs.readdirSync(PATH_ROUTES).filter((file) => {
 
     const name = removeExtension(file)
     if (name !== "index") {
-        console.log(`cargando ruta ${name}`)
+        console.log(`cargando ruta: ${name}`)
         router.use(`/${name}`, require(`./${file}`))
     }
 })
